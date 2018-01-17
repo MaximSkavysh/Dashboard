@@ -1,15 +1,47 @@
 <div class="page-header">
-	<h2>User registration:</h2>
+    <h1>User Registration</h1>
 </div>
+
+<!-- Registration Form -->
 <form ng-submit="register.regUser(regData);">
-	<label>Email:</label>
-	<input class="form-control" type="text" name="email" placeholder="Enter email" ng-model="register.regData.email">
-	<br>
-	<label>Username:</label>
-	<input class="form-control" type="text" name="username" placeholder="Enter esername" ng-model="register.regData.username">
-	<br>
-	<label>Password:</label>
-	<input class="form-control" type="password" name="password" placeholder="Enter password" ng-model="register.regData.password">
-	<br>
-	<button class="btn btn-primary" type="submit">Register</button>
+    <!-- Email -->
+    <label>Email:</label>
+    <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
+    <br>
+    <!-- Username -->
+    <label>Username:</label>
+    <input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="register.regData.username">
+    <br>
+    <!-- Password -->
+    <label>Password:</label>
+    <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="register.regData.password">
+    <br>
+    <!-- Submit/Register Button -->
+    <button class="btn btn-primary" type="submit">Register</button>
 </form>
+<!-- Registration Form -->
+
+<br>
+
+<!-- Loading Icon -->
+<div class="jumbotron text-center" ng-show="register.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading....</p>
+</div>
+<!-- Loading Icon -->
+
+<br>
+
+<!-- Successful Registration Message -->
+<div class="row show-hide-message" ng-show="register.successMsg">
+    <div class="alert alert-success">{{ register.successMsg }}</div>
+</div>
+<!-- Successful Registration Message -->
+
+<br>
+
+<!-- Failed Registration Message -->
+<div class="row show-hide-message" ng-show="register.errorMsg">
+    <div class="alert alert-danger">{{ register.errorMsg }}</div>
+</div>
+<!-- Failed Registration Message -->

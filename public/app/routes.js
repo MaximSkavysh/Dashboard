@@ -1,27 +1,29 @@
-var app = angular.module('appRoutes', ['ngRoute'])
+angular.module('appRoutes', ['ngRoute'])
 
-.config(function($routeProvider, $locationProvider) {
+    .config(function($routeProvider, $locationProvider) {
 
-	$routeProvider
+        $routeProvider // Create routes
 
-	.when('/', {
-		templateUrl: 'app/views/pages/home.html'
-	})
+            // Home Route    
+            .when('/', {
+                templateUrl: 'app/views/pages/home.html'
+            })
 
-	.when('/about', {
-		templateUrl: 'app/views/pages/about.html'
-	})
-	
-	.when('/register',{
-		templateUrl: 'app/views/pages/users/register.html',
-		controller: 'regCtrl',
-		controllerAs: 'register'	
-	})
+            // Aboute Route            
+            .when('/about', {
+                templateUrl: 'app/views/pages/about.html'
+            })
 
-	.otherwise({ redirectTo: '/'} );
+            // Register Route            
+            .when('/register', {
+                templateUrl: 'app/views/pages/users/register.html',
+                controller: 'regCtrl',
+                controllerAs: 'register'
+            })
 
-	$locationProvider.html5Mode({
-	  enabled: true,
-	  requireBase: false
-	});
-});
+            // "catch all" to redirect to home page            
+            .otherwise({ redirectTo: '/' });
+
+        // Required for no base (remove '#' from address bar)
+        $locationProvider.html5Mode({ enabled: true, requireBase: false });
+    });

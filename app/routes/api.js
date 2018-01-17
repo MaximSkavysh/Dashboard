@@ -1,26 +1,28 @@
-var User = require('../models/users');
+var User = require('../models/users'); // Important the database User Model created with Mongoose Schema
 
-module.exports = function(router){
-	router.post('/users', function(req,res){
-		var user = new User();
-		user.username = req.body.username;
-		user.password = req.body.password;
-		user.email = req.body.email;
-		if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' ||
-			req.body.emai == null || req.body.emai == ''){
-			res.send('Ensure username and password were provided');
-
-		}
-		else{
-			user.save(function(err){
-				if(err){
-					res.send('Username already exists!');
-				}
-				else{
-					res.send('User created');
-				}
-			});
-		}
-	});
-	return router;
+// Export routes to the main server.js file
+module.exports = function(router) {
+    /* ====================
+    User Registration Route
+    ==================== */
+    router.post('/users', function(req, res) {
+        var user = new User(); // Create a new User object and save to a variable
+        user.username = req.body.username; // Save username sent by request (using bodyParser)
+        user.password = req.body.password; // Save password sent by request (using bodyParser)
+        user.email = req.body.email; // Save email sent by request (using bodyParser)
+        // If statement to ensure request it not empty or null
+        if (req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '') {
+            res.json({ success: false, message: 'Ensure username, email, and password were provided' });
+        } else {
+            // If criteria is met, save user to database
+            user.save(function(err) {
+                if (err) {
+                    res.json({ success: false, message: 'Username or Email already exists!' }); // Cannot save if username or email exist in the database
+                } else {
+                    res.json({ success: true, message: 'user created!' }); // If all criteria met, save user
+                }
+            });
+        }
+    });
+    return router; // Return router object to server
 }
