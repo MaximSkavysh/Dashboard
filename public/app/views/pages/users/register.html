@@ -1,47 +1,48 @@
-<div class="page-header">
-    <h1>User Registration</h1>
-</div>
+<div class="container">
+    <div class="page-header">
+        <h1>User Registration</h1>
+    </div>
 
-<!-- Registration Form -->
-<form ng-submit="register.regUser(regData);">
-    <!-- Email -->
-    <label>Email:</label>
-    <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
+    <form class="form-signin" ng-submit="register.regUser(regData);">
+        <h3 class="form-signin-heading">Please, fill in the fields:</h3>
+        <label>Email address</label>
+        <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
+        <br>
+        <!-- Username -->
+        <label>Username:</label>
+        <input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="register.regData.username">
+        <br>
+        <!-- Password -->
+        <label>Password:</label>
+        <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="register.regData.password">
+        <br>
+        <!-- Submit/Register Button -->
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
     <br>
-    <!-- Username -->
-    <label>Username:</label>
-    <input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="register.regData.username">
+
+    <!-- Loading Icon -->
+    <div class="jumbotron text-center" ng-show="register.loading">
+        <span class="glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading....</p>
+    </div>
+    <!-- Loading Icon -->
+
     <br>
-    <!-- Password -->
-    <label>Password:</label>
-    <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="register.regData.password">
+
+    <!-- Successful Registration Message -->
+    <div class="row show-hide-message" ng-show="register.successMsg">
+        <div class="alert alert-success">{{ register.successMsg }}</div>
+    </div>
+    <!-- Successful Registration Message -->
+
     <br>
-    <!-- Submit/Register Button -->
-    <button class="btn btn-primary" type="submit">Register</button>
-</form>
-<!-- Registration Form -->
 
-<br>
+    <!-- Failed Registration Message -->
+    <div class="row show-hide-message" ng-show="register.errorMsg">
+        <div class="alert alert-danger">{{ register.errorMsg }}</div>
+    </div>
+    <!-- Failed Registration Message -->
 
-<!-- Loading Icon -->
-<div class="jumbotron text-center" ng-show="register.loading">
-    <span class="glyphicon glyphicon-repeat spinner"></span>
-    <p>Loading....</p>
 </div>
-<!-- Loading Icon -->
-
-<br>
-
-<!-- Successful Registration Message -->
-<div class="row show-hide-message" ng-show="register.successMsg">
-    <div class="alert alert-success">{{ register.successMsg }}</div>
-</div>
-<!-- Successful Registration Message -->
-
-<br>
-
-<!-- Failed Registration Message -->
-<div class="row show-hide-message" ng-show="register.errorMsg">
-    <div class="alert alert-danger">{{ register.errorMsg }}</div>
-</div>
-<!-- Failed Registration Message -->
