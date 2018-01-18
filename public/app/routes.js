@@ -1,10 +1,10 @@
 angular.module('appRoutes', ['ngRoute'])
 
-    .config(function($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider) {
 
         $routeProvider // Create routes
 
-            // Home Route    
+        // Home Route
             .when('/', {
                 templateUrl: 'app/views/pages/home.html'
             })
@@ -20,10 +20,13 @@ angular.module('appRoutes', ['ngRoute'])
                 controller: 'regCtrl',
                 controllerAs: 'register'
             })
+            .when('/login', {
+                templateUrl: 'app/views/pages/users/login.html'
+            })
 
-            // "catch all" to redirect to home page            
-            .otherwise({ redirectTo: '/' });
+        // "catch all" to redirect to home page
+            .otherwise({redirectTo: '/'});
 
         // Required for no base (remove '#' from address bar)
-        $locationProvider.html5Mode({ enabled: true, requireBase: false });
+        $locationProvider.html5Mode({enabled: true, requireBase: false});
     });
