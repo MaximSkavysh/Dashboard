@@ -3,14 +3,14 @@
         <h1>User login</h1>
     </div>
 
-    <form class="form-signin" ng-submit="register.regUser(regData);">
+    <form class="form-signin" ng-submit="main.doLogin(loginData);">
         <h3 class="form-signin-heading">Please, fill in the fields:</h3>
         <label>Email address</label>
-        <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
+        <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="main.loginData.email">
         <br>
         <!-- Password -->
         <label>Password:</label>
-        <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="register.regData.password">
+        <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="main.loginData.password">
         <br>
         <!-- Submit/Register Button -->
         <button class="btn btn-primary" type="submit">Login</button>
@@ -19,7 +19,7 @@
     <br>
 
     <!-- Loading Icon -->
-    <div class="jumbotron text-center" ng-show="register.loading">
+    <div class="jumbotron text-center" ng-show="main.loading">
         <span class="glyphicon glyphicon-repeat spinner"></span>
         <p>Loading....</p>
     </div>
@@ -28,16 +28,16 @@
     <br>
 
     <!-- Successful Registration Message -->
-    <div class="row show-hide-message" ng-show="register.successMsg">
-        <div class="alert alert-success">{{ register.successMsg }}</div>
+    <div class="row show-hide-message" ng-show="main.successMsg">
+        <div class="alert alert-success">{{ main.successMsg }}</div>
     </div>
     <!-- Successful Registration Message -->
 
     <br>
 
     <!-- Failed Registration Message -->
-    <div class="row show-hide-message" ng-show="register.errorMsg">
-        <div class="alert alert-danger">{{ register.errorMsg }}</div>
+    <div class="row show-hide-message" ng-show="main.errorMsg">
+        <div class="alert alert-danger">{{ main.errorMsg }}</div>
     </div>
     <!-- Failed Registration Message -->
 

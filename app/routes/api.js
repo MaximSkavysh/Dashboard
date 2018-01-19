@@ -24,5 +24,28 @@ module.exports = function(router) {
             });
         }
     });
+    // user login route
+    router.post('/authenticate',function (req, res) {
+        User.findOne({email: req.body.email}).select('email username password').exec(function (err, user) {
+            if (err) throw err;
+            if(!user){
+                res.json({success: false, message : 'Could not authenticate user'});
+            }
+            else if(user){
+                if (req.body.password){
+                    var validPassword = user.comparePassword(req.body.password);
+                }else {
+                    res.json({success:'false', message: 'No password provided'});
+                }
+                if(validPassword){
+                    res.json({success: true, message: 'User authenticated!'});
+                }
+                else {
+                    res.json({success: false, message: 'Could not authenticate password!'});
+                }
+            }
+        });
+
+    });
     return router; // Return router object to server
 }
