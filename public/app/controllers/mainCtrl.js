@@ -9,7 +9,7 @@ angular.module('mainController',['authServices'])
             app.errorMsg = false; // Clear error message each time the user presses submit
 
             // Initiate service to save the user into the dabase
-            Auth.login(app.doLogin).then(function (data) {
+            Auth.login(app.loginData).then(function (data) {
                 if (data.data.success) {
                     app.loading = false; // Once data is retrieved, loading icon should be cleared
                     app.successMsg = data.data.message + '...Redirecting'; // Create Success Message
