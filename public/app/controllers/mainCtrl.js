@@ -1,28 +1,54 @@
 angular.module('mainController',['authServices'])
 
-.controller('mainCtrl', function (Auth, $timeout, $location) {
+.controller('mainCtrl', function (Auth, $timeout, $location, $rootScope) {
         var app = this;
+        app.loadme = false;
+        $rootScope.$on('$routeChangeStart', function(){
+            if(Auth.isLoggedIn()){
+                //console.log("user is logged in");
+                app.isLoggedIn = true;
+                Auth.getUser().then(function(data){
+                    //console.log(data.data.username);
+                    app.username = data.data.username;
+                });
+            }
+            else{
+                //console.log("user is not logged in");
+                app.isLoggedIn = false;
+                app.username=null;
+                app.loadme = true;
+            }
+        });
 
-        // Function to submit form and register account
-        app.doLogin = function (loginData) {
-            app.loading = true; // To activate spinning loading icon w/bootstrap
-            app.errorMsg = false; // Clear error message each time the user presses submit
+        app.doLogin = function(loginData){
+            app.loading = true;
+            app.errorMessage= false;
 
-            // Initiate service to save the user into the dabase
-            Auth.login(app.loginData).then(function (data) {
-                if (data.data.success) {
-                    app.loading = false; // Once data is retrieved, loading icon should be cleared
-                    app.successMsg = data.data.message + '...Redirecting'; // Create Success Message
-                    // Redirect to home page after 2000 miliseconds
-                    $timeout(function () {
+            Auth.login(app.loginData).then(function(data){
+                //console.log(data);
+                if(data.data.success){
+                    app.loading=false;
+                    app.successMessage = data.data.message;
+                    $timeout(function() {
                         $location.path('/about');
-                        $route.reload();
-                    }, 2000);
-                } else {
-                    app.loading = false; // Once data is retrieved, loading icon should be cleared
-                    app.errorMsg = data.data.message; // Create an error message
+                        app.loginData = '';
+                        app.successMessage = false;
+                    }, 1500);
+
+                }
+                else{
+                    app.loading=false;
+                    app.errorMessage = data.data.message;
                 }
             });
         };
+
+        this.logout = function(){
+            Auth.logout();
+            $location.path('/logout');
+            $timeout(function(){
+                $location.path('/');
+            }, 1500);
+        }
 
 });

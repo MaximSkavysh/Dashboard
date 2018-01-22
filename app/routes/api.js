@@ -1,5 +1,6 @@
 var User = require('../models/users'); // Important the database User Model created with Mongoose Schema
-
+var jwt = require('jsonwebtoken');
+var secretPhrase = 'lobster';
 // Export routes to the main server.js file
 module.exports = function(router) {
     /* ====================
@@ -37,7 +38,8 @@ module.exports = function(router) {
                     if (!validPassword) {
                         res.json({ success: false, message: 'Could not validate Password' });
                     } else {
-                       res.json({ success: true, message: 'User Authenticate' });
+                        var token = jwt.sign({username: user.username, email: user.email}, secretPhrase,{ expiresIn: '1h' });
+                        res.json({ success: true, message: 'User Authenticate', token: token });
                     }
                 } else {
                     res.json({ success: false, message: 'No password provided' });
@@ -46,5 +48,33 @@ module.exports = function(router) {
         });
 
     });
+
+    //decrypt token - using middleware
+    router.use(function(req, res, next){
+        //way to get token - request, url, headers
+        var token = req.body.token || req.body.query || req.headers['x-access-token'];
+        if(token){
+            //verify token
+            jwt.verify(token, secretPhrase, function(err, decoded){
+                if(err){
+                    //when user tries to login after 24hrs with same token
+                    res.json({success: false, message:'Token Invalid'});
+                }
+                else{
+                    //decoded sends username
+                    req.decoded=decoded;
+                    next();	//goes to /current_user
+                }
+            });
+        }
+        else{
+            res.json({success: false, message: 'No token provided'});
+        }
+    });
+    router.post('/current_user', function(req, res){
+        res.send(req.decoded);
+    });
+
+
     return router; // Return router object to server
 }

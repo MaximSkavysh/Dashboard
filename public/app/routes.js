@@ -26,7 +26,7 @@ angular.module('appRoutes', ['ngRoute'])
             })
 
         // "catch all" to redirect to home page
-            .otherwise({redirectTo: '/'});
+            .otherwise({ redirectTo: '/' });
 
         // Required for no base (remove '#' from address bar)
         $locationProvider.html5Mode({enabled: true, requireBase: false});
