@@ -25,7 +25,12 @@ angular.module('appRoutes', ['ngRoute'])
 
             })
 
-        // "catch all" to redirect to home page
+            .when('/profile', {
+                templateUrl: 'app/views/pages/users/profile.html'
+
+            })
+
+            // "catch all" to redirect to home page
             .otherwise({ redirectTo: '/' });
 
         // Required for no base (remove '#' from address bar)
