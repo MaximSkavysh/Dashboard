@@ -2,7 +2,7 @@ angular.module('mainController',['authServices'])
 
 .controller('mainCtrl', function (Auth, $timeout, $location, $rootScope) {
         var app = this;
-        app.loadme = false;
+        app.loadme = false; // to increase speed of hiding
         $rootScope.$on('$routeChangeStart', function(){
             if(Auth.isLoggedIn()){
                 //console.log("user is logged in");
@@ -10,6 +10,8 @@ angular.module('mainController',['authServices'])
                 Auth.getUser().then(function(data){
                     //console.log(data.data.username);
                     app.username = data.data.username;
+
+                    app.loadme = true;
                 });
             }
             else{
@@ -33,7 +35,7 @@ angular.module('mainController',['authServices'])
                         $location.path('/about');
                         app.loginData = '';
                         app.successMessage = false;
-                    }, 1500);
+                    }, 1000);
 
                 }
                 else{
@@ -48,7 +50,7 @@ angular.module('mainController',['authServices'])
             $location.path('/logout');
             $timeout(function(){
                 $location.path('/');
-            }, 1500);
+            }, 1000);
         }
 
 });
