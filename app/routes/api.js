@@ -1,4 +1,5 @@
 var User = require('../models/users'); // Important the database User Model created with Mongoose Schema
+var Board = require('../models/board')
 var jwt = require('jsonwebtoken');
 var secretPhrase = 'lobster';
 // Export routes to the main server.js file
@@ -74,6 +75,55 @@ module.exports = function(router) {
     router.post('/current_user', function(req, res){
         res.send(req.decoded);
     });
+
+
+
+    router.get('/employees', function(req, res){
+        Board.find(function(err, employees){
+            if(err)
+                res.send(err);
+            res.json(employees);
+        });
+    });
+
+    router.get('/employees/:id', function(req, res){
+        Board.findOne({_id:req.params.id}, function(err, employee){
+            if(err)
+                res.send(err);
+            res.json(employee);
+        });
+    });
+    router.post('/employees', function(req, res){
+        Board.create( req.body, function(err, employees){
+            if(err)
+                res.send(err);
+            res.json(employees);
+        });
+    });
+
+    router.delete('/employees/:id', function(req, res){
+        Board.findOneAndRemove({_id:req.params.id}, function(err, employee){
+            if(err)
+                res.send(err);
+            res.json(employee);
+        });
+    });
+    router.put('/employees/:id', function(req, res){
+        var query = {
+            name:req.body.name,
+            dept:req.body.dept,
+            area:req.body.area,
+            status:req.body.status,
+            contact:req.body.contact,
+            salary:req.body.salary
+        };
+        Board.findOneAndUpdate({_id:req.params.id}, query, function(err, employee){
+            if(err)
+                res.send(err);
+            res.json(employee);
+        });
+    });
+
 
 
     return router; // Return router object to server

@@ -18,16 +18,36 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/register', {
                 templateUrl: 'app/views/pages/users/register.html',
                 controller: 'regCtrl',
-                controllerAs: 'register'
+                controllerAs: 'register',
+                authenticated: false
             })
             .when('/login', {
-                templateUrl: 'app/views/pages/users/login.html'
+                templateUrl: 'app/views/pages/users/login.html',
+                authenticated: false
 
             })
 
             .when('/profile', {
-                templateUrl: 'app/views/pages/users/profile.html'
+                templateUrl: 'app/views/pages/users/profile.html',
+                authenticated: true
 
+            })
+
+            .when('/employees', {
+                templateUrl:'app/views/pages/template/list.html',
+                controller:'boardCtrl'
+            })
+            .when('/employees/create', {
+                templateUrl:'app/views/pages/template/add.html',
+                controller:'boardCtrl'
+            })
+            .when('/employees/:id/edit', {
+                templateUrl:'app/views/pages/template/edit.html',
+                controller:'boardCtrl'
+            })
+            .when('/employees/:id/show', {
+                templateUrl:'app/views/pages/template/show.html',
+                controller:'boardCtrl'
             })
 
             // "catch all" to redirect to home page
