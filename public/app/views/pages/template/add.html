@@ -1,29 +1,29 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <p class="panel-title"><span style="color:#5bc0de;" class="glyphicon glyphicon-plus"> </span> Add New Employee</p>
+        <p class="panel-title"><span style="color:#5bc0de;" class="glyphicon glyphicon-plus"> </span> Add New Note</p>
     </div>
     <div class="panel-body">
         <form ng-submit="addEmployee()">
             <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Notes:</label>
                 <input type="text" class="form-control" id="name" ng-model="employee.name">
             </div>
             <div class="form-group">
-                <label for="dept">Department:</label>
+                <label for="dept">Description:</label>
                 <input type="text" class="form-control" id="dept" ng-model="employee.dept">
             </div>
             <div class="form-group">
-                <label for="area">Location:</label>
+                <label for="area">Link:</label>
                 <input type="text" class="form-control" id="area" ng-model="employee.area">
             </div>
             <div class="form-group">
-                <label for="contact">Contact No. :</label>
+                <label for="contact">Models:</label>
                 <input type="text" class="form-control" id="contact" ng-model="employee.contact">
                 <div class="form-group">
-                    <label for="status">Job Status :</label>
+                    <label for="status">Version :</label>
                     <input type="text" class="form-control" id="status" ng-model="employee.status">
                     <div class="form-group">
-                        <label for="salary">Salary :</label>
+                        <label for="salary">Date uploaded :</label>
                         <input type="text" class="form-control" id="salary" ng-model="employee.salary">
                     </div>
                     <button type="submit" style="color:#5bc0de;" class="btn btn-default">Save</button>

@@ -76,7 +76,7 @@ module.exports = function(router) {
         res.send(req.decoded);
     });
 
-
+    // CRUID operations with dashboard
 
     router.get('/employees', function(req, res){
         Board.find(function(err, employees){
