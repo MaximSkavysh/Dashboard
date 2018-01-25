@@ -1,17 +1,17 @@
-<div class="panel panel-default" ng-init="showEmployee()">
+<div class="panel panel-default" ng-init="showNote()">
     <div class="panel-heading">
         <p class="panel-title"> Notes Detail Information</p>
     </div>
     <div class="panel-body">
         <form>
             <div class="form-group">
-                <label class="form-control">Note: {{ employee.name }}</label>
-                <label class="form-control">Description: {{ employee.dept }}</label>
-                <label class="form-control">Link: {{ employee.area }}</label>
-                <label class="form-control">Version: {{ employee.status }}</label>
-                <label class="form-control">Models: {{ employee.contact }}</label>
-                <label class="form-control">Date uploaded: {{ employee.salary }}</label>
-                <a href="/employees" class="btn btn-default"> Cancel</a>
+                <label class="form-control">Note: {{ note.name }}</label>
+                <label class="form-control">Description: {{ note.description }}</label>
+                <label class="form-control">Link: {{ note.link }}</label>
+                <label class="form-control">Version: {{ note.version }}</label>
+                <label class="form-control">Models: {{ note.model }}</label>
+                <label class="form-control">Date uploaded: {{ note.dateUpload }}</label>
+                <a href="/notes" class="btn btn-default"> Cancel</a>
             </div>
         </form>
         </div>

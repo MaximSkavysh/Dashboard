@@ -8,11 +8,11 @@ var Schema = mongoose.Schema;
 
 var BoardSchema = new Schema({
     name:String,
-    dept:String,
-    area:String,
-    status:String,
-    contact:String,
-    salary:String
+    description:String,
+    link:String,
+    version:String,
+    model:String,
+    dateUpload:String
 });
 
 module.exports = mongoose.model('Board',BoardSchema);

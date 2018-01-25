@@ -33,19 +33,19 @@ angular.module('appRoutes', ['ngRoute'])
 
             })
 
-            .when('/employees', {
+            .when('/notes', {
                 templateUrl:'app/views/pages/template/list.html',
                 controller:'boardCtrl'
             })
-            .when('/employees/create', {
+            .when('/notes/create', {
                 templateUrl:'app/views/pages/template/add.html',
                 controller:'boardCtrl'
             })
-            .when('/employees/:id/edit', {
+            .when('/notes/:id/edit', {
                 templateUrl:'app/views/pages/template/edit.html',
                 controller:'boardCtrl'
             })
-            .when('/employees/:id/show', {
+            .when('/notes/:id/show', {
                 templateUrl:'app/views/pages/template/show.html',
                 controller:'boardCtrl'
             })

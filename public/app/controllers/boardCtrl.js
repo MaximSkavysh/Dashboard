@@ -4,34 +4,34 @@
 angular.module('boardController', [])
 
 .controller('boardCtrl', function($scope,$route,$routeParams,$http){
-    $scope.getEmployees = function(){
-        $http.get('/api/employees/').then(function(response){
-            $scope.employees = response.data;
+    $scope.getNotes = function(){
+        $http.get('/api/notes/').then(function(response){
+            $scope.notes = response.data;
         });
     };
-    $scope.showEmployee = function(){
+    $scope.showNote = function(){
         var id = $routeParams.id;
-        $http.get('/api/employees/'+ id).then(function(response){
-            $scope.employee = response.data;
+        $http.get('/api/notes/'+ id).then(function(response){
+            $scope.note = response.data;
         });
     };
-    $scope.addEmployee = function(){
+    $scope.addNote = function(){
         //var id = $routeParams.id;
-        $http.post('/api/employees/', $scope.employee).then(function(response){
+        $http.post('/api/notes/', $scope.note).then(function(response){
             //$scope.employee = response.data;
-            window.location.href = '/';
+            window.location.href = '/notes';
         });
     };
-    $scope.updateEmployee = function(){
+    $scope.updateNote = function(){
         var id = $routeParams.id;
-        $http.put('/api/employees/'+ id , $scope.employee).then(function(response){
+        $http.put('/api/notes/'+ id , $scope.note).then(function(response){
             //$scope.employee = response.data;
-            window.location.href = '/';
+            window.location.href = '/notes';
         });
     };
-    $scope.deleteEmployee = function(id){
+    $scope.deleteNote = function(id){
         var id = id;
-        $http.delete('/api/employees/'+ id).then(function(response){
+        $http.delete('/api/notes/'+ id).then(function(response){
             $route.reload();
         });
     };

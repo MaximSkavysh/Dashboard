@@ -76,51 +76,51 @@ module.exports = function(router) {
         res.send(req.decoded);
     });
 
+
     // CRUID operations with dashboard
-
-    router.get('/employees', function(req, res){
-        Board.find(function(err, employees){
+    router.get('/notes', function(req, res){
+        Board.find(function(err, notes){
             if(err)
                 res.send(err);
-            res.json(employees);
+            res.json(notes);
         });
     });
 
-    router.get('/employees/:id', function(req, res){
-        Board.findOne({_id:req.params.id}, function(err, employee){
+    router.get('/notes/:id', function(req, res){
+        Board.findOne({_id:req.params.id}, function(err, note){
             if(err)
                 res.send(err);
-            res.json(employee);
+            res.json(note);
         });
     });
-    router.post('/employees', function(req, res){
-        Board.create( req.body, function(err, employees){
+    router.post('/notes', function(req, res){
+        Board.create( req.body, function(err, notes){
             if(err)
                 res.send(err);
-            res.json(employees);
+            res.json(notes);
         });
     });
 
-    router.delete('/employees/:id', function(req, res){
-        Board.findOneAndRemove({_id:req.params.id}, function(err, employee){
+    router.delete('/notes/:id', function(req, res){
+        Board.findOneAndRemove({_id:req.params.id}, function(err, notes){
             if(err)
                 res.send(err);
-            res.json(employee);
+            res.json(notes);
         });
     });
-    router.put('/employees/:id', function(req, res){
+    router.put('/notes/:id', function(req, res){
         var query = {
             name:req.body.name,
-            dept:req.body.dept,
-            area:req.body.area,
-            status:req.body.status,
-            contact:req.body.contact,
-            salary:req.body.salary
+            description:req.body.description,
+            link:req.body.link,
+            version:req.body.version,
+            model:req.body.model,
+            dateUpload:req.body.dateUpload
         };
-        Board.findOneAndUpdate({_id:req.params.id}, query, function(err, employee){
+        Board.findOneAndUpdate({_id:req.params.id}, query, function(err, note){
             if(err)
                 res.send(err);
-            res.json(employee);
+            res.json(note);
         });
     });
 

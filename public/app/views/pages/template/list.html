@@ -1,4 +1,4 @@
-<div class="container" ng-init="getEmployees()">
+<div class="container-fluid" ng-init="getNotes()">
 
     <h1>Notes List</h1>
     <table class="table table-hover">
@@ -13,18 +13,17 @@
         </thead>
         <tbody>
         <tbody>
-        <tr ng-repeat="employee in employees">
-            <td>{{ employee.name }}</td>
-            <td>{{ employee.dept }}</td>
-            <td><a href="{{ employee.area }}">
-                {{ employee.area }} </a></td>
-            <td>{{ employee.status}}</td>
+        <tr ng-repeat="note in notes">
+            <td>{{ note.name }}</td>
+            <td>{{ note.description }}</td>
+            <td><a href="{{ note.link }}">{{ note.link }} </a></td>
+            <td>{{ note.version}}</td>
             <td>
-                <a href="/employees/{{employee._id}}/show" class="btn btn-info"> Show  </a>
+                <a href="/notes/{{note._id}}/show" class="btn btn-info"> Show  </a>
                 <br>
-                <a href="/employees/{{employee._id}}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+                <a href="/notes/{{note._id}}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
                 <br>
-                <a ng-click="deleteEmployee(employee._id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
+                <a ng-click="deleteNote(note._id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
             </td>
         </tr>
         </tbody>
