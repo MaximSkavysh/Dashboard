@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-init="getNotes()">
+<div class="table-responsive" ng-init="getNotes()">
 
     <h1>Notes List</h1>
     <table class="table table-hover">
@@ -6,8 +6,9 @@
         <tr>
             <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release notes</th>
             <th><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Description</th>
-            <th><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>Link</th>
-            <th>Version</th>
+            <th><span class="glyphicon glyphicon-link" aria-hidden="true"></span>Link</th>
+            <th><span class="glyphicon glyphicon-flag"></span>Version</th>
+            <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -18,6 +19,7 @@
             <td>{{ note.description }}</td>
             <td><a href="{{ note.link }}">{{ note.link }} </a></td>
             <td>{{ note.version}}</td>
+            <td>{{note.dateUpload}}</td>
             <td>
                 <a href="/notes/{{note._id}}/show" class="btn btn-info"> Show  </a>
                 <br>
