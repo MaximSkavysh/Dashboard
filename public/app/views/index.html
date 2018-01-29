@@ -55,8 +55,8 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
                         <p class="navbar-text navbar-right" ng-show="main.isLoggedIn">Signed in as <a href="/profile" class="navbar-link" ng-show="main.isLoggedIn">{{main.username}}</a></p>
-                        <li role="presentation"><a href="/notes"><span class="glyphicon glyphicon-th-list"> </span> Dashboard notes</a></li>
-                        <li role="presentation"><a href="/notes/create">
+                        <li ng-show="main.isLoggedIn"> <a href="/notes"><span class="glyphicon glyphicon-th-list" > </span> Dashboard notes</a></li>
+                        <li><a href="/notes/create" ng-show="main.isLoggedIn">
                             <span class="glyphicon glyphicon-plus"> </span>	Add New Note</a>
                         </li>
 
