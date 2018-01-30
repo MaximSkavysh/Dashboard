@@ -4,9 +4,8 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release notes</th>
-            <th><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Description</th>
-            <th><span class="glyphicon glyphicon-link" aria-hidden="true"></span>Link</th>
+            <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release Note and Link:</th>
+            <th><span class="glyphicon glyphicon-file"></span>Build and Link For Build:</th>
             <th><span class="glyphicon glyphicon-flag"></span>Version</th>
             <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
             <th>Action</th>
@@ -15,9 +14,14 @@
         <tbody>
         <tbody>
         <tr ng-repeat="note in notes">
-            <td>{{ note.name }}</td>
-            <td>{{ note.description }}</td>
-            <td><a href="{{ note.link }}">{{ note.link }} </a></td>
+            <td>{{ note.name }}
+                <br>
+                <a href="{{ note.link }}">{{ note.link }} </a>
+            </td>
+            <td>{{note.model}}
+                <br>
+                <a href="{{note.linkModel}}"> {{note.linkModel}} </a>
+            </td>
             <td>{{ note.version}}</td>
             <td>{{note.created_at}}</td>
             <td>

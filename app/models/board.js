@@ -1,7 +1,7 @@
 /**
  * Created by SkavyshM on 1/24/2018.
  */
-
+var dateFormat = require('dateformat');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -12,14 +12,13 @@ var BoardSchema = new Schema({
     link:String,
     version:String,
     model:String,
-    created_at    : { type: Date }
+    linkModel: String,
+    created_at    : { type: String }
 });
 
 BoardSchema.pre('save', function(next){
-    now = new Date();
-    if ( !this.created_at ) {
-        this.created_at = now;
-    }
+    var now = new Date();
+        this.created_at = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
     next();
 });
 

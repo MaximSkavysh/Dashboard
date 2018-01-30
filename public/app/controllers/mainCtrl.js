@@ -32,7 +32,7 @@ angular.module('mainController',['authServices'])
                     app.loading=false;
                     app.successMessage = data.data.message;
                     $timeout(function() {
-                        $location.path('/about');
+                        $location.path('/notes');
                         app.loginData = '';
                         app.successMessage = false;
                     }, 1000);

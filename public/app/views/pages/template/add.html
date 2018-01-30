@@ -10,15 +10,19 @@
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
-                <input type="text" class="form-control" id="description" ng-model="note.description">
+                <textarea  rows="10" cols="30" type="text" class="form-control" id="description" ng-model="note.description"></textarea>
             </div>
             <div class="form-group">
                 <label for="link">Link:</label>
                 <input type="text" class="form-control" id="link" ng-model="note.link">
             </div>
             <div class="form-group">
-                <label for="model">Models:</label>
+                <label for="model">Build:</label>
                 <input type="text" class="form-control" id="model" ng-model="note.model">
+                <div class="form-group">
+                    <label for="linkModel">Link to Build: </label>
+                    <input type="text" class="form-control" id="linkModel" ng-model="note.linkModel">
+                </div>
                 <div class="form-group">
                     <label for="version">Version :</label>
                     <input type="text" class="form-control" id="version" ng-model="note.version">
