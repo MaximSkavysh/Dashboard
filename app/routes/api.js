@@ -14,14 +14,14 @@ module.exports = function(router) {
         user.email = req.body.email; // Save email sent by request (using bodyParser)
         // If statement to ensure request it not empty or null
         if (req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '') {
-            res.json({ success: false, message: 'Ensure username, email, and password were provided' });
+            res.json({ success: false, message: 'Ensure username, email and password were provided' });
         } else {
             // If criteria is met, save user to database
             user.save(function(err) {
                 if (err) {
                     res.json({ success: false, message: 'Username or Email already exists!' }); // Cannot save if username or email exist in the database
                 } else {
-                    res.json({ success: true, message: 'user created!' }); // If all criteria met, save user
+                    res.json({ success: true, message: 'User created!' }); // If all criteria met, save user
                 }
             });
         }
@@ -31,7 +31,7 @@ module.exports = function(router) {
             if(err) throw err;
 
             if(!user){
-                res.json({success: false, message:'could not authenticate user'});
+                res.json({success: false, message:'Could not authenticate user'});
             }
             else if (user) {
                 if (req.body.password) {

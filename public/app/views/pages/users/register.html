@@ -4,17 +4,17 @@
     </div>
 
     <form class="form-signin" ng-submit="register.regUser(regData);">
-        <h3 class="form-signin-heading">Please, fill in the fields:</h3>
+        <h3 class="form-signin-heading">Please, fill out the fields:</h3>
         <label>Email address</label>
-        <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
+        <input class="form-control" type="email" name="email" placeholder=" E-mail" ng-model="register.regData.email" required="true">
         <br>
         <!-- Username -->
         <label>Username:</label>
-        <input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="register.regData.username">
+        <input class="form-control" type="text" name="username" placeholder="Username" ng-model="register.regData.username" required="true">
         <br>
         <!-- Password -->
         <label>Password:</label>
-        <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="register.regData.password">
+        <input class="form-control" type="password" name="password" placeholder="Password" ng-model="register.regData.password">
         <br>
         <!-- Submit/Register Button -->
         <button class="btn btn-primary" type="submit">Register</button>
