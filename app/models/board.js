@@ -12,7 +12,15 @@ var BoardSchema = new Schema({
     link:String,
     version:String,
     model:String,
-    dateUpload:String
+    created_at    : { type: Date }
+});
+
+BoardSchema.pre('save', function(next){
+    now = new Date();
+    if ( !this.created_at ) {
+        this.created_at = now;
+    }
+    next();
 });
 
 module.exports = mongoose.model('Board',BoardSchema);
