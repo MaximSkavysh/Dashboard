@@ -5,7 +5,8 @@
         <thead>
         <tr>
             <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release Note and Link:</th>
-            <th><span class="glyphicon glyphicon-file"></span>Build and Link For Build:</th>
+            <th><span class="glyphicon glyphicon-file"></span>Build and Link to Build:</th>
+            <th>SBE and Link to SBE:</th>
             <th><span class="glyphicon glyphicon-flag"></span>Version</th>
             <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
             <th>Action</th>
@@ -21,6 +22,11 @@
             <td>{{note.model}}
                 <br>
                 <a href="{{note.linkModel}}"> {{note.linkModel}} </a>
+            </td>
+            <td>
+                {{note.sbe}}
+                <br>
+                <a href="{{note.sbeLink}}"> {{note.sbeLink}}</a>
             </td>
             <td>{{ note.version}}</td>
             <td>{{note.created_at}}</td>
