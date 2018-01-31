@@ -24,23 +24,23 @@ angular.module('mainController',['authServices'])
 
         app.doLogin = function(loginData){
             app.loading = true;
-            app.errorMessage= false;
+            app.errorMsg= false;
 
             Auth.login(app.loginData).then(function(data){
                 //console.log(data);
                 if(data.data.success){
                     app.loading=false;
-                    app.successMessage = data.data.message;
+                    app.successMsg = data.data.message;
                     $timeout(function() {
                         $location.path('/notes');
                         app.loginData = '';
-                        app.successMessage = false;
+                        app.successMsg = false;
                     }, 1000);
 
                 }
                 else{
                     app.loading=false;
-                    app.errorMessage = data.data.message;
+                    app.errorMsg = data.data.message;
                 }
             });
         };

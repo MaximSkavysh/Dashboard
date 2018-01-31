@@ -27,7 +27,8 @@ module.exports = function(router) {
         }
     });
     router.post('/authenticate', function(req, res){
-         User.findOne({email: req.body.email}).select('email password username').exec(function(err, user){
+        var loginUserEmail = req.body.email;
+         User.findOne({email: loginUserEmail}).select('email password username').exec(function(err, user){
             if(err) throw err;
 
             if(!user){
