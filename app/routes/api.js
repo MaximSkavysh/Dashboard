@@ -115,7 +115,9 @@ module.exports = function(router) {
             link:req.body.link,
             version:req.body.version,
             model:req.body.model,
-            linkModel: req.body.linkModel
+            linkModel: req.body.linkModel,
+            sbe: req.body.sbe,
+            sbeLink: req.body.sbeLink
            // dateUpload:req.body.dateUpload
         };
         Board.findOneAndUpdate({_id:req.params.id}, query, function(err, note){

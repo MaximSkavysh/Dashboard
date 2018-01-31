@@ -13,6 +13,8 @@ var BoardSchema = new Schema({
     version:String,
     model:String,
     linkModel: String,
+    sbe: String,
+    sbeLink: String,
     created_at    : { type: String }
 });
 
