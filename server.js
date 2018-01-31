@@ -8,6 +8,10 @@ var bodyParser 	= 	require('body-parser');
 var router	= 	express.Router();
 var appRoutes 	= 	require('./app/routes/api')(router);
 var path = require('path');
+var ip = require('ip');
+
+console.log ( ip.address() );
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json

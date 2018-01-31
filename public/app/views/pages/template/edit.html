@@ -6,7 +6,7 @@
         <form  ng-submit="updateNote()">
             <div class="form-group">
                 <label for="name">Notes:</label>
-                <input type="text" class="form-control" id="name" ng-model="note.name" value="note.name">
+                <input type="text" class="form-control" id="name" ng-model="note.name" value="note.name" required="true">
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
@@ -14,14 +14,14 @@
             </div>
             <div class="form-group">
                 <label for="link">Link:</label>
-                <input type="text" class="form-control" id="link" ng-model="note.link" value="note.link">
+                <input type="text" class="form-control" id="link" ng-model="note.link" value="note.link" required="true">
             </div>
             <div class="form-group">
                 <label for="model">Build :</label>
-                <input type="text" class="form-control" id="model" ng-model="note.model" value="note.model">
+                <input type="text" class="form-control" id="model" ng-model="note.model" value="note.model" required="true">
                 <div class="form-group">
                     <label for="linkModel">Link for Build:</label>
-                    <input type="text" class="form-control" id="linkModel" ng-model="note.linkModel" value="note.linkModel">
+                    <input type="text" class="form-control" id="linkModel" ng-model="note.linkModel" value="note.linkModel" required="true">
                 </div>
                 <div class="form-group">
                     <label for="version">Version :</label>
