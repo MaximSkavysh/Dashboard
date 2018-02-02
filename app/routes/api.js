@@ -40,7 +40,7 @@ module.exports = function(router) {
                     if (!validPassword) {
                         res.json({ success: false, message: 'Could not validate Password' });
                     } else {
-                        var token = jwt.sign({username: user.username, email: user.email}, secretPhrase,{ expiresIn: '1h' });
+                        var token = jwt.sign({username: user.username, email: user.email}, secretPhrase,{ expiresIn: '30s' });
                         res.json({ success: true, message: 'User Authenticate', token: token });
                     }
                 } else {
@@ -75,6 +75,19 @@ module.exports = function(router) {
     });
     router.post('/current_user', function(req, res){
         res.send(req.decoded);
+    });
+
+    router.get('/renewToken/:username', function (req, res) {
+        User.findOne({username: req.params.username}).select().exec(function (err, user) {
+            if(err) throw err;
+            if(!user){
+                res.json({success: false, message: 'No user was found'});
+            }
+            else {
+                var newToken = jwt.sign({username: user.username, email: user.email}, secretPhrase,{ expiresIn: '1h' });
+                res.json({ success: true, message: 'User Authenticate', token: newToken });
+            }
+        });
     });
 
 
@@ -127,6 +140,7 @@ module.exports = function(router) {
             res.json(note);
         });
     });
+
 
 
 
