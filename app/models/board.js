@@ -5,7 +5,6 @@ var dateFormat = require('dateformat');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var BoardSchema = new Schema({
     name:String,
     description:String,

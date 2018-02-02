@@ -29,7 +29,10 @@
                 <a href="{{note.sbeLink}}"> {{note.sbeLink}}</a>
             </td>
             <td>{{ note.version}}</td>
-            <td>{{note.created_at}}</td>
+            <td>{{note.created_at}}
+                <br>
+                {{note.uploader}}
+            </td>
             <td>
                 <a href="/notes/{{note._id}}/show" class="btn btn-info"> Show  </a>
                 <br>
