@@ -4,6 +4,7 @@ angular.module('mainController',['authServices', 'userServices'])
         var app = this;
         app.loadme = false; // to increase speed of hiding
 
+
         app.checkSession = function () {
             if(Auth.isLoggedIn()){
                 app.checkingSession = false;
@@ -30,32 +31,35 @@ angular.module('mainController',['authServices', 'userServices'])
                 },2000);
             }
         };
+
+
         app.checkSession();
 
-        var showModal = function (option) {
-            app.choiceMade = false;
-            app.modalHeader = undefined;
-            app.modalBody = undefined;
-            app.hideButtons = false;
-            if(option === 1){
-                app.modalHeader = 'Timeout warning';
-                app.modalBody = 'Your session will expired in 15 seconds. Would you like to renew it?';
-                $("#myModal").modal({backdrop: "static"});
+        var showModal = function(option) {
+            app.choiceMade = false; // Clear choiceMade on startup
+            app.modalHeader = undefined; // Clear modalHeader on startup
+            app.modalBody = undefined; // Clear modalBody on startup
+            app.hideButtons = false; // Clear hideButton on startup
+
+            // Check which modal option to activate	(option 1: session expired or about to expire; option 2: log the user out)
+            if (option === 1) {
+                app.modalHeader = 'Timeout Warning'; // Set header
+                app.modalBody = 'Your session will expired in 30 minutes. Would you like to renew your session?'; // Set body
+                $("#myModal").modal({ backdrop: "static" }); // Open modal
                 // Give user 10 seconds to make a decision 'yes'/'no'
                 $timeout(function() {
                     if (!app.choiceMade) app.endSession(); // If no choice is made after 10 seconds, select 'no' for them
                 }, 10000);
-            }
-            else if(option === 2){
-                app.modalHeader = 'Logging out';
-                app.hideButtons = true;
-                $("#myModal").modal({backdrop: "static"});
-                $timeout(function () {
-                    Auth.logout();
-                    $location.path('/logout');
-                    hideModal();
-                },2000);
-
+            } else if (option === 2) {
+                app.hideButtons = true; // Hide 'yes'/'no' buttons
+                app.modalHeader = 'Logging Out'; // Set header
+                $("#myModal").modal({ backdrop: "static" }); // Open modal
+                $timeout(function() {
+                    Auth.logout(); // Logout user
+                    $location.path('/logout'); // Change route to clear user object
+                    hideModal(); // Close modal
+                    window.location.reload();
+                }, 2000);
             }
         };
         
