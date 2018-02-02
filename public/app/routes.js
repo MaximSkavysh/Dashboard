@@ -65,9 +65,6 @@ app.run(['$rootScope', 'Auth', '$location',  function($rootScope, Auth, $locatio
 
     // Check each time route changes
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
-
-        // Only perform if user visited a route listed above
-        console.log(next.$$route);
         if (next.$$route !== undefined) {
             // Check if authentication is required on route
             if (next.$$route.authenticated === true) {

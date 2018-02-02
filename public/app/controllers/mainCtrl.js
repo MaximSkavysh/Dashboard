@@ -13,6 +13,7 @@ angular.module('mainController',['authServices', 'userServices'])
                         $interval.cancel(interval);
                     }
                     else {
+                        // Parse JSON Web Token using AngularJS for timestamp conversion
                         self.parseJwt = function (token) {
                             var base64URL = token.split('.')[1];
                             var base64 = base64URL.replace('-','+').replace('_','/');
@@ -21,15 +22,10 @@ angular.module('mainController',['authServices', 'userServices'])
                         var expireTime = self.parseJwt(token);
                         var timeStamp = Math.floor(Date.now()/1000);
                         var  timeCheck = expireTime.exp - timeStamp;
-                        if(timeCheck <= 25){
-                            console.log('token exp');
+                        if(timeCheck <= 15){
                             showModal(1);
                             $interval.cancel(interval);
                         }
-                        else {
-                            console.log('not exp');
-                        }
-                        console.log(expireTime.exp);
                     }
                 },2000);
             }
@@ -43,8 +39,12 @@ angular.module('mainController',['authServices', 'userServices'])
             app.hideButtons = false;
             if(option === 1){
                 app.modalHeader = 'Timeout warning';
-                app.modalBody = 'Your session will expired in 30 seconds. Would you like to renew it?';
+                app.modalBody = 'Your session will expired in 15 seconds. Would you like to renew it?';
                 $("#myModal").modal({backdrop: "static"});
+                // Give user 10 seconds to make a decision 'yes'/'no'
+                $timeout(function() {
+                    if (!app.choiceMade) app.endSession(); // If no choice is made after 10 seconds, select 'no' for them
+                }, 10000);
             }
             else if(option === 2){
                 app.modalHeader = 'Logging out';
@@ -52,19 +52,11 @@ angular.module('mainController',['authServices', 'userServices'])
                 $("#myModal").modal({backdrop: "static"});
                 $timeout(function () {
                     Auth.logout();
-                    $location.path('/');
+                    $location.path('/logout');
                     hideModal();
-                    $route.reload();
-                })
+                },2000);
+
             }
-            $timeout(function () {
-                if(!app.choiceMade){
-                    Auth.logout();
-                    $location.path('/');
-                    console.log('logged out');
-                    hideModal();
-                }
-            },4000);
         };
         
         app.renewSession = function () {
@@ -79,7 +71,6 @@ angular.module('mainController',['authServices', 'userServices'])
                    app.modalBody = data.data.message;
                }
             });
-            console.log('renew');
             hideModal();
         };
         
@@ -102,7 +93,6 @@ angular.module('mainController',['authServices', 'userServices'])
                 //console.log("user is logged in");
                 app.isLoggedIn = true;
                 Auth.getUser().then(function(data){
-                    //console.log(data.data.username);
                     app.username = data.data.username;
                     app.useremail = data.data.email;
                     app.loadme = true;
@@ -111,7 +101,7 @@ angular.module('mainController',['authServices', 'userServices'])
             else{
                 //console.log("user is not logged in");
                 app.isLoggedIn = false;
-                app.username=null;
+                app.username='';
                 app.loadme = true;
             }
         });
