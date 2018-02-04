@@ -1,46 +1,49 @@
 <div class="table-responsive" ng-init="getNotes()">
 
-    <h1>Notes List</h1>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release Note and Link:</th>
-            <th><span class="glyphicon glyphicon-file"></span>Build and Link to Build:</th>
-            <th>SBE and Link to SBE:</th>
-            <th><span class="glyphicon glyphicon-flag"></span>Version</th>
-            <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tbody>
-        <tr ng-repeat="note in notes">
-            <td>{{ note.name }}
-                <br>
-                <a href="{{ note.link }}">{{ note.link }} </a>
-            </td>
-            <td>{{note.model}}
-                <br>
-                <a href="{{note.linkModel}}"> {{note.linkModel}} </a>
-            </td>
-            <td>
-                {{note.sbe}}
-                <br>
-                <a href="{{note.sbeLink}}"> {{note.sbeLink}}</a>
-            </td>
-            <td>{{ note.version}}</td>
-            <td>{{note.created_at}}
-                <br>
-                {{note.uploader}}
-            </td>
-            <td>
-                <a href="/notes/{{note._id}}/show" class="btn btn-info"> Show  </a>
-                <br>
-                <a href="/notes/{{note._id}}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
-                <br>
-                <a ng-click="deleteNote(note._id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Release Notes:</strong>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release Note and Link:</th>
+                <th><span class="glyphicon glyphicon-file"></span>Build and Link to Build:</th>
+                <th>SBE and Link to SBE:</th>
+                <th><span class="glyphicon glyphicon-flag"></span>Version</th>
+                <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="note in notes">
+                <td>{{ note.name }}
+                    <br>
+                    <a href="{{ note.link }}">{{ note.link }} </a>
+                </td>
+                <td>{{note.model}}
+                    <br>
+                    <a href="{{note.linkModel}}"> {{note.linkModel}} </a>
+                </td>
+                <td>
+                    {{note.sbe}}
+                    <br>
+                    <a href="{{note.sbeLink}}"> {{note.sbeLink}}</a>
+                </td>
+                <td>{{ note.version}}</td>
+                <td>{{note.created_at}}
+                    <br>
+                    {{note.uploader}}
+                </td>
+                <td>
+                    <a href="/notes/{{note._id}}/show" class="btn btn-info"> Show  </a>
+                    <br>
+                    <a href="/notes/{{note._id}}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+                    <br>
+                    <a ng-click="deleteNote(note._id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
