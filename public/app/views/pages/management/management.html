@@ -23,7 +23,7 @@
                     <td>{{person.email}}</td>
                     <td>{{person.permission}}</td>
                     <td>
-                        <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+                        <a href="/edit/{{person._id}}" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
                         <a class="btn btn-danger" ng-click="management.deleteUser(person.username);" ng-show="management.deleteAccess"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
                     </td>
                 </tr>
