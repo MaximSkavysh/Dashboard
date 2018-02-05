@@ -99,7 +99,15 @@ angular.module('mainController',['authServices', 'userServices'])
                 Auth.getUser().then(function(data){
                     app.username = data.data.username;
                     app.useremail = data.data.email;
-                    app.loadme = true;
+                    User.getPermission().then(function (data) {
+                        if(data.data.permission === 'admin'){
+                            app.authorized = true;
+                            app.loadme =true;
+                        }
+                        else {
+                            app.loadme =true;
+                        }
+                    });
                 });
             }
             else{

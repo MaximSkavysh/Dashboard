@@ -10,6 +10,15 @@ angular.module('userServices', [])
 		userFactory.renewSession =function (username) {
 			return $http.get('/api/renewToken/' + username);
         };
+		userFactory.getPermission = function () {
+			return $http.get('/api/permission');
+        }
+        userFactory.getUsers = function () {
+          return $http.get('/api/management');
+        };
+		userFactory.deleteUser = function (username) {
+            return $http.delete('/api/management/' + username);
+        };
 
 		return userFactory;
 	});

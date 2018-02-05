@@ -30,6 +30,7 @@
     <script src="app/controllers/userCtrl.js"></script>
     <script src="app/controllers/mainCtrl.js"></script>
     <script src="app/controllers/boardCtrl.js"></script>
+    <script src="app/controllers/managementCtrl.js"></script>
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
     <script src="app/services/authServices.js"></script>
@@ -54,6 +55,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
+                        <li><a ng-show="main.isLoggedIn && main.authorized" href="/management">Management</a> </li>
                         <p class="navbar-text navbar-right" ng-show="main.isLoggedIn">Signed in as <a href="/profile" class="navbar-link" ng-show="main.isLoggedIn">{{main.username}}</a></p>
                         <li ng-show="main.isLoggedIn"> <a href="/notes"><span class="glyphicon glyphicon-th-list" > </span> Dashboard notes</a></li>
                         <li><a href="/notes/create" ng-show="main.isLoggedIn">

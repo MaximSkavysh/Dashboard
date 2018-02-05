@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Management page</h1>
+    </div>
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>User management</strong>
+        </div>
+        <table class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Permission</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="person in management.users">
+                    <td>{{person.username}}</td>
+                    <td>{{person.email}}</td>
+                    <td>{{person.permission}}</td>
+                    <td>
+                        <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+                        <a class="btn btn-danger" ng-click="management.deleteUser(person.username);" ng-show="management.deleteAccess"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </table>
+
+    </div>
+
+    <!-- Successful Registration Message -->
+    <div class="row show-hide-message" ng-show="management.successMsg">
+        <div class="alert alert-success">{{ management.successMsg }}</div>
+    </div>
+    <!-- Successful Registration Message -->
+
+    <br>
+
+    <!-- Failed Registration Message -->
+    <div class="row show-hide-message" ng-show="management.errorMsg">
+        <div class="alert alert-danger">{{ management.errorMsg }}</div>
+    </div>
+    <!-- Failed Registration Message -->
+
+</div>
