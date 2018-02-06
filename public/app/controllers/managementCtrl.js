@@ -45,4 +45,30 @@ angular.module('managementController', [])
      });
 
    };
+})
+
+.controller('editCtrl', function ($scope) {
+    var app = this;
+    $scope.usernameTab = 'active';
+    app.usernamePhase = function () {
+        $scope.usernameTab = 'active';
+        $scope.emaiTab = 'default';
+        $scope.permissionTab = 'default';
+
+    };
+
+    app.emailPhase = function () {
+        $scope.usernameTab = 'default';
+        $scope.emaiTab = 'active';
+        $scope.permissionTab = 'default';
+
+    };
+
+    app.permissionPhase = function () {
+        $scope.usernameTab = 'default';
+        $scope.emaiTab = 'default';
+        $scope.permissionTab = 'active';
+
+    };
+
 });

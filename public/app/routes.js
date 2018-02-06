@@ -62,6 +62,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
                 permission: 'admin'
             })
 
+            .when('/edit/:id',{
+                templateUrl: 'app/views/pages/management/edit.html',
+                controller: 'editCtrl',
+                controllerAs: 'edit',
+                authenticated: true,
+                permission: 'admin'
+            })
+
             // "catch all" to redirect to home page
             .otherwise({ redirectTo: '/' });
 
