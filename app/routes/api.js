@@ -151,6 +151,52 @@ module.exports = function (router) {
         })
     });
 
+    router.get('/edit/:id', function (req, res) {
+        var editUser = req.params.id;
+        User.findOne({username: req.decoded.username}, function (err, mainUser) {
+            if(err) throw err;
+            if(!mainUser){
+                res.json({success: false, message: 'No user found'});
+            }
+            else {
+                if(mainUser.permission === 'admin'){
+                    User.findOne({_id: editUser}, function (err, user) {
+                        if(err) throw err;
+                        if(!user){
+                            res.json({success: false, message: 'No user found'});
+                        }
+                        else {
+                            res.json({success: true, user: user});
+                        }
+                    });
+                }
+                else {
+                    res.json({success: false, message: 'No permission'});
+                }
+            }
+        });
+    });
+
+    router.put('/edit', function (req, res) {
+       var editUser = req.body.username;
+       if(req.body.username) var newUsername = req.body.username;
+       if(req.body.email) var newEmail = req.body.email;
+       if(req.body.permission) var newPermission = req.body.permission;
+       User.findOne({username: req.decoded.username}, function (err, mainUser) {
+           if(err) throw err;
+           if(!mainUser){
+               res.json({success: false, message: "No user found"});
+           }
+           if(newUsername){
+               if(mainUser.permission === 'admin'){
+                   User.finOne({username: editUser}, function (err, user) {
+                       //to do
+                   });
+               }
+           }
+       });
+    });
+
     // CRUID operations with dashboard
     router.get('/notes', function (req, res) {
         Board.find(function (err, notes) {

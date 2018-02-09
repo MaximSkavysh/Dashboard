@@ -44,7 +44,7 @@ angular.module('mainController',['authServices', 'userServices'])
             // Check which modal option to activate	(option 1: session expired or about to expire; option 2: log the user out)
             if (option === 1) {
                 app.modalHeader = 'Timeout Warning'; // Set header
-                app.modalBody = 'Your session will expired in 30 minutes. Would you like to renew your session?'; // Set body
+                app.modalBody = 'Your session will expired in 15 seconds. Would you like to renew your session?'; // Set body
                 $("#myModal").modal({ backdrop: "static" }); // Open modal
                 // Give user 10 seconds to make a decision 'yes'/'no'
                 $timeout(function() {
@@ -92,7 +92,7 @@ angular.module('mainController',['authServices', 'userServices'])
 
         $rootScope.$on('$routeChangeStart', function(){
 
-            if(!app.checkSession) app.checkSession();
+            if(!app.checkingSession) app.checkSession();
             if(Auth.isLoggedIn()){
                 //console.log("user is logged in");
                 app.isLoggedIn = true;
