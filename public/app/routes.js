@@ -34,53 +34,54 @@ var app = angular.module('appRoutes', ['ngRoute'])
             })
 
             .when('/notes', {
-                templateUrl:'app/views/pages/template/list.html',
-                controller:'boardCtrl',
+                templateUrl: 'app/views/pages/template/list.html',
+                controller: 'boardCtrl',
                 authenticated: true
             })
             .when('/notes/create', {
-                templateUrl:'app/views/pages/template/add.html',
-                controller:'boardCtrl',
+                templateUrl: 'app/views/pages/template/add.html',
+                controller: 'boardCtrl',
                 authenticated: true
             })
             .when('/notes/:id/edit', {
-                templateUrl:'app/views/pages/template/edit.html',
-                controller:'boardCtrl',
-                authenticated: true
+                templateUrl: 'app/views/pages/template/edit.html',
+                controller: 'boardCtrl',
+                authenticated: true,
+                permission: ['admin', 'uploader']
             })
             .when('/notes/:id/show', {
-                templateUrl:'app/views/pages/template/show.html',
-                controller:'boardCtrl',
+                templateUrl: 'app/views/pages/template/show.html',
+                controller: 'boardCtrl',
                 authenticated: true
             })
 
-            .when('/management',{
+            .when('/management', {
                 templateUrl: 'app/views/pages/management/management.html',
                 controller: 'managementCtrl',
                 controllerAs: 'management',
                 authenticated: true,
-                permission: 'admin'
+                permission: ['admin', 'uploader']
             })
 
-            .when('/edit/:id',{
+            .when('/edit/:id', {
                 templateUrl: 'app/views/pages/management/edit.html',
                 controller: 'editCtrl',
                 controllerAs: 'edit',
                 authenticated: true,
-                permission: 'admin'
+                permission: ['admin', 'uploader']
             })
 
             // "catch all" to redirect to home page
-            .otherwise({ redirectTo: '/' });
+            .otherwise({redirectTo: '/'});
 
         // Required for no base (remove '#' from address bar)
         $locationProvider.html5Mode({enabled: true, requireBase: false});
     });
 
-app.run(['$rootScope', 'Auth', '$location', 'User',  function($rootScope, Auth, $location, User) {
+app.run(['$rootScope', 'Auth', '$location', 'User', function ($rootScope, Auth, $location, User) {
 
     // Check each time route changes
-    $rootScope.$on('$routeChangeStart', function(event, next, current) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
         if (next.$$route !== undefined) {
             // Check if authentication is required on route
             if (next.$$route.authenticated === true) {
@@ -89,11 +90,13 @@ app.run(['$rootScope', 'Auth', '$location', 'User',  function($rootScope, Auth, 
                     event.preventDefault(); // If not logged in, prevent accessing route
                     $location.path('/'); // Redirect to home instead
                 }
-                else if (next.$$route.permission){
+                else if (next.$$route.permission) {
                     User.getPermission().then(function (data) {
-                        if(next.$$route.permission !== data.data.permission){
-                            event.preventDefault(); // If not logged in, prevent accessing route
-                            $location.path('/');
+                        if (next.$$route.permission[0] !== data.data.permission) {
+                            if (next.$$route.permission[1] !== data.data.permission) {
+                                event.preventDefault(); // If not logged in, prevent accessing route
+                                $location.path('/');
+                            }
                         }
                     });
 

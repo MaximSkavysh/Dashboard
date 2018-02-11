@@ -154,15 +154,15 @@ module.exports = function (router) {
     router.get('/edit/:id', function (req, res) {
         var editUser = req.params.id;
         User.findOne({username: req.decoded.username}, function (err, mainUser) {
-            if(err) throw err;
-            if(!mainUser){
+            if (err) throw err;
+            if (!mainUser) {
                 res.json({success: false, message: 'No user found'});
             }
             else {
-                if(mainUser.permission === 'admin'){
+                if (mainUser.permission === 'admin') {
                     User.findOne({_id: editUser}, function (err, user) {
-                        if(err) throw err;
-                        if(!user){
+                        if (err) throw err;
+                        if (!user) {
                             res.json({success: false, message: 'No user found'});
                         }
                         else {
@@ -178,23 +178,168 @@ module.exports = function (router) {
     });
 
     router.put('/edit', function (req, res) {
-       var editUser = req.body.username;
-       if(req.body.username) var newUsername = req.body.username;
-       if(req.body.email) var newEmail = req.body.email;
-       if(req.body.permission) var newPermission = req.body.permission;
-       User.findOne({username: req.decoded.username}, function (err, mainUser) {
-           if(err) throw err;
-           if(!mainUser){
-               res.json({success: false, message: "No user found"});
-           }
-           if(newUsername){
-               if(mainUser.permission === 'admin'){
-                   User.finOne({username: editUser}, function (err, user) {
-                       //to do
-                   });
-               }
-           }
-       });
+        var editUser = req.body.username;
+        if (req.body.username) var newUsername = req.body.username;
+        if (req.body.email) var newEmail = req.body.email;
+        if (req.body.permission) var newPermission = req.body.permission;
+        User.findOne({username: req.decoded.username}, function (err, mainUser) {
+            if (err) throw err;
+            if (!mainUser) {
+                res.json({success: false, message: "No user found"});
+            }
+            if (newUsername) {
+                if (mainUser.permission === 'admin') {
+                    User.findOne({_id: editUser}, function (err, user) {
+                        if (err) throw err;
+                        if (!user) {
+                            res.json({success: false, message: 'No user was found'});
+                        }
+                        else {
+                            user.username = newUsername;
+                            user.save(function (err) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                else {
+                                    res.json({success: true, message: 'Username has been updated'})
+                                }
+                            });
+                        }
+                    });
+                }
+                else {
+                    res.json({success: false, message: 'No permission'});
+                }
+            }
+            if (newEmail) {
+                if (mainUser.permission === 'admin') {
+                    User.findOne({_id: editUser}, function (err, user) {
+                        if (err) throw err;
+                        if (!user) {
+                            res.json({success: false, message: 'No user was found'});
+                        }
+                        else {
+                            user.email = newEmail;
+                            user.save(function (err) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                else {
+                                    res.json({success: true, message: 'Email has been updated'})
+                                }
+                            });
+                        }
+                    });
+                }
+                else {
+                    res.json({success: false, message: 'No permission'});
+                }
+            }
+            if (newPermission) {
+                if (mainUser.permission === 'admin') {
+                    User.findOne({_id: editUser}, function (err, user) {
+                        if (err) throw err;
+                        if (!user) {
+                            res.json({success: false, message: 'No user was found'});
+                        }
+                        else {
+                            // Check if attempting to set the 'user' permission
+                            if (newPermission === 'user') {
+                                // Check the current permission is an admin
+                                if (user.permission === 'admin') {
+                                    // Check if user making changes has access
+                                    if (mainUser.permission !== 'admin') {
+                                        res.json({
+                                            success: false,
+                                            message: 'Insufficient Permissions. You must be an admin to downgrade an admin.'
+                                        }); // Return error
+                                    } else {
+                                        user.permission = newPermission; // Assign new permission to user
+                                        // Save changes
+                                        user.save(function (err) {
+                                            if (err) {
+                                                console.log(err); // Long error to console
+                                            } else {
+                                                res.json({success: true, message: 'Permissions have been updated!'}); // Return success
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    user.permission = newPermission; // Assign new permission to user
+                                    // Save changes
+                                    user.save(function (err) {
+                                        if (err) {
+                                            console.log(err); // Log error to console
+                                        } else {
+                                            res.json({success: true, message: 'Permission have been updated!'}); // Return success
+                                        }
+                                    });
+                                }
+                            }
+                            // Check if attempting to set the 'moderator' permission
+                            if (newPermission === 'uploader') {
+                                // Check if the current permission is 'admin'
+                                if (user.permission === 'admin') {
+                                    // Check if user making changes has access
+                                    if (mainUser.permission !== 'admin') {
+                                        res.json({
+                                            success: false,
+                                            message: 'Insufficient Permission. You must be an admin to downgrade another admin'
+                                        }); // Return error
+                                    } else {
+                                        user.permission = newPermission; // Assign new permission
+                                        // Save changes
+                                        user.save(function (err) {
+                                            if (err) {
+                                                console.log(err); // Log error to console
+                                            } else {
+                                                res.json({success: true, message: 'Permission have been updated!'}); // Return success
+                                            }
+                                        });
+                                    }
+                                } else {
+                                    user.permission = newPermission; // Assign new permssion
+                                    // Save changes
+                                    user.save(function (err) {
+                                        if (err) {
+                                            console.log(err); // Log error to console
+                                        } else {
+                                            res.json({success: true, message: 'Permission have been updated!'}); // Return success
+                                        }
+                                    });
+                                }
+                            }
+
+                            // Check if assigning the 'admin' permission
+                            if (newPermission === 'admin') {
+                                // Check if logged in user has access
+                                if (mainUser.permission === 'admin') {
+                                    user.permission = newPermission; // Assign new permission
+                                    // Save changes
+                                    user.save(function (err) {
+                                        if (err) {
+                                            console.log(err); // Log error to console
+                                        } else {
+                                            res.json({success: true, message: 'Permissions have been updated!'}); // Return success
+                                        }
+                                    });
+                                } else {
+                                    res.json({
+                                        success: false,
+                                        message: 'Insufficient Permissions. You must be an admin to upgrade someone to the admin level'
+                                    }); // Return error
+                                }
+                            }
+                        }
+
+
+                    });
+                }
+                else {
+                    res.json({success: false, message: 'No permission'});
+                }
+            }
+        });
     });
 
     // CRUID operations with dashboard

@@ -1,7 +1,7 @@
 {
-  "name": "sheduler",
+  "name": "dashboard",
   "version": "1.0.0",
-  "description": "sheduler for notes using MEAN",
+  "description": "dashboard for notes using MEAN",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
