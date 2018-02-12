@@ -10,7 +10,8 @@
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea  rows="10" cols="30" type="text" class="form-control" id="description" ng-model="note.description"></textarea>
+                <textarea rows="10" cols="30" type="text" class="form-control" id="description"
+                          ng-model="note.description"></textarea>
             </div>
             <div class="form-group">
                 <label for="link">Link:</label>
@@ -19,6 +20,7 @@
             <div class="form-group">
                 <label for="model">Build:</label>
                 <input type="text" class="form-control" id="model" ng-model="note.model" required="true">
+
                 <div class="form-group">
                     <label for="linkModel">Link to Build: </label>
                     <input type="text" class="form-control" id="linkModel" ng-model="note.linkModel" required="true">
@@ -36,8 +38,8 @@
                     <input type="text" class="form-control" id="version" ng-model="note.version">
                 </div>
 
-                    <button type="submit" style="color:#5bc0de;" class="btn btn-default">Save</button>
-                    <a href="/notes" class="btn btn-default"> Cancel</a>
+                <button type="submit" style="color:#5bc0de;" class="btn btn-default">Save</button>
+                <a href="/notes" class="btn btn-default"> Cancel</a>
 
             </div>
         </form>

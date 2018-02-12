@@ -5,8 +5,8 @@ var secretPhrase = 'lobster';
 // Export routes to the main server.js file
 module.exports = function (router) {
     /* ====================
-    User Registration Route
-    ==================== */
+     User Registration Route
+     ==================== */
     router.post('/users', function (req, res) {
         var user = new User(); // Create a new User object and save to a variable
         user.username = req.body.username; // Save username sent by request (using bodyParser)
