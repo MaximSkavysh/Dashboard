@@ -36,11 +36,13 @@
                     {{note.uploader}}
                 </td>
                 <td>
-                    <a  href="/notes/{{note._id}}/show" class="btn btn-info"> Show  </a>
+                    <a href="/notes/{{note._id}}/show" class="btn btn-info"> Show </a>
                     <br>
-                    <a ng-show="main.isLoggedIn && main.authorized" href="/notes/{{note._id}}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="/notes/{{note._id}}/edit"
+                       class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit </a>
                     <br>
-                    <a ng-show="main.isLoggedIn && main.authorized" ng-click="deleteNote(note._id)" class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
+                    <a ng-show="main.isLoggedIn && main.authorized" ng-click="deleteNote(note._id)"
+                       class="btn btn-danger"><span class="glyphicon glyphicon-trash"> </span> Delete </a>
                 </td>
             </tr>
             </tbody>

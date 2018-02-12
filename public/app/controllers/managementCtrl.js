@@ -59,7 +59,7 @@ angular.module('managementController', [])
             app.phase1 = true;
 
             User.getUser($routeParams.id).then(function (data) {
-                if(data.data.success){
+                if (data.data.success) {
 
                 }
             })
