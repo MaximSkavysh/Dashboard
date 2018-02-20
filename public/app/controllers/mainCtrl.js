@@ -91,7 +91,6 @@ angular.module('mainController', ['authServices', 'userServices'])
         };
 
         $rootScope.$on('$routeChangeStart', function () {
-
             if (!app.checkingSession) app.checkSession();
             if (Auth.isLoggedIn()) {
                 //console.log("user is logged in");

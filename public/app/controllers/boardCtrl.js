@@ -36,4 +36,8 @@ angular.module('boardController', [])
             });
         };
 
+        $scope.sendMail = function(){
+
+        }
+
     });

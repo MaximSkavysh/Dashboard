@@ -19,4 +19,62 @@
             </div>
         </form>
     </div>
+
+    <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4><span class="glyphicon glyphicon-envelope"></span> Send email</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+            <form role="mailForm" ng-submit="sendMail()">
+                <div class="form-group">
+                    <label for="from"><span class="glyphicon glyphicon-user"></span> From:</label>
+                    <input type="email" class="form-control" id="from" value="{{main.useremail}}">
+                </div>
+                <div class="form-group">
+                    <label for="to">To:</label>
+                    <input type="text" class="form-control" id="to" placeholder="Enter emails">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" class="form-control" id="subject" placeholder="Enter subject"
+                           value="New build &laquo;{{note.model}}&raquo; is available">
+                </div>
+                <div class="form-group">
+                    <label for="text">Text:</label>
+                    <textarea rows="4" cols="30" type="text" class="form-control" id="text">Hello. New build {{ note.model }} is available in box: {{note.linkModel}}; Release notes:  {{ note.name }} link: {{ note.link }}; SBE version: {{note.sbe}} link: {{note.sbeLink}}
+                    </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary"></span>Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!--<div class="modal fade" id="modalEmail" role="dialog">-->
+    <!--<div class="modal-dialog">-->
+
+    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+    <!--<div class="modal-content">-->
+    <!--<div class="modal-header" style="padding:35px 50px;">-->
+    <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+    <!--<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>-->
+    <!--</div>-->
+    <!--<div class="modal-body" style="padding:40px 50px;">-->
+    <!--<form role="form">-->
+    <!--<div class="form-group">-->
+    <!--<label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>-->
+    <!--<input type="text" class="form-control" id="usrname" placeholder="Enter email">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+    <!--<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>-->
+    <!--<input type="text" class="form-control" id="psw" placeholder="Enter password">-->
+    <!--</div>-->
+    <!--<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>-->
+    <!--</form>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
 </div>
+
