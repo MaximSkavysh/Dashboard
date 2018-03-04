@@ -178,7 +178,7 @@ module.exports = function (router) {
     });
 
     router.put('/edit', function (req, res) {
-        var editUser = req.body.username;
+        var editUser = req.body._id;
         if (req.body.username) var newUsername = req.body.username;
         if (req.body.email) var newEmail = req.body.email;
         if (req.body.permission) var newPermission = req.body.permission;
