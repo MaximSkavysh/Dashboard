@@ -43,7 +43,7 @@ module.exports = function (router) {
                         var token = jwt.sign({
                             username: user.username,
                             email: user.email
-                        }, secretPhrase, {expiresIn: '30m'});
+                        }, secretPhrase, {expiresIn: '24h'});
                         res.json({success: true, message: 'User Authenticate', token: token});
                     }
                 } else {
