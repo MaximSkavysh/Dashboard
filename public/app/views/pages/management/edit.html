@@ -9,7 +9,52 @@
         </li>
     </ul>
 
-    <form>
-
+    <form name="edit.usernameForm" ng-show="edit.phase1" ng-submit="edit.updateUsername(newUsername);">
+        <h3 class="form-signin-heading">Please, fill out the fields:</h3>
+        <!-- Username -->
+        <label>Username:</label>
+        <input class="form-control" type="text" name="username" placeholder="Username"
+               ng-model="newUsername" required="true" ng-disabled="edit.disabled">
+        <br>
+        <!-- Update -->
+        <button class="btn btn-primary" type="submit">Update</button>
     </form>
+
+    <form name="edit.emailForm" ng-show="edit.phase2" ng-submit="edit.updateEmail(newEmail);">
+        <h3 class="form-signin-heading">Please, fill out the fields:</h3>
+        <!-- Username -->
+        <label>Email:</label>
+        <input class="form-control" type="email" name="email" placeholder="e-mail"
+               ng-model="newEmail" required="true" ng-disabled="edit.disabled">
+        <br>
+        <!-- Update -->
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+
+    <div ng-show="edit.phase3">
+        <label>Current permission: {{newPermission}}</label>
+        <div class="btn-group">
+            <button ng-disabled="edit.disableUser" ng-click="edit.updatePermission('user');" type="button"
+                    class="btn btn-info">User
+            </button>
+            <button ng-disabled="edit.disableAdmin" ng-click="edit.updatePermission('admin');" type="button"
+                    class="btn btn-warning">Admin
+            </button>
+        </div>
+    </div>
+
 </div>
+
+<!-- Successful Registration Message -->
+<div class="row show-hide-message" ng-show="edit.successMsg">
+    <div class="alert alert-success">{{ edit.successMsg }}</div>
+</div>
+<!-- Successful Registration Message -->
+
+<br>
+
+<!-- Failed Registration Message -->
+<div class="row show-hide-message" ng-show="edit.errorMsg">
+    <div class="alert alert-danger">{{ edit.errorMsg }}</div>
+</div>
+<!-- Failed Registration Message -->
