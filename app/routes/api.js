@@ -1,9 +1,21 @@
 var User = require('../models/users'); // Important the database User Model created with Mongoose Schema
 var Board = require('../models/board')
 var jwt = require('jsonwebtoken');
+var nodemailer = require('nodemailer'); // Import Nodemailer Package
+var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
 var secretPhrase = 'lobster';
 // Export routes to the main server.js file
 module.exports = function (router) {
+
+    // Start Sendgrid Configuration Settings
+    var options = {
+        auth: {
+            api_user: 'Maksim.Skavysh', // Sendgrid username
+            api_key: '!lobster23' // Sendgrid password
+        }
+    }
+    var mailer = nodemailer.createTransport(sgTransport(options));
+    // End Sendgrid Configuration Settings
     /* ====================
      User Registration Route
      ==================== */
@@ -363,6 +375,20 @@ module.exports = function (router) {
             if (err)
                 res.send(err);
             res.json(notes);
+            var email = {
+                to: ['maximgen666@gamil.com', 'Maksim.Skavysh@ibm.com','maximgen666@mail.ru'],
+                from: 'maximgen666@gmail.com',
+                subject: 'Hi there',
+                text: 'Awesome sauce',
+                html: '<b>Awesome sauce</b>'
+            };
+
+            mailer.sendMail(email, function(err, res) {
+                if (err) {
+                    console.log(err)
+                }
+                console.log(res);
+            });
         });
     });
 

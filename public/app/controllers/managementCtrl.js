@@ -94,7 +94,8 @@ angular.module('managementController', [])
             app.phase1 = false
             app.phase2 = false;
             app.phase3 = true;
-            app.errorMsg = false;;
+            app.errorMsg = false;
+            ;
 
         };
 
@@ -154,11 +155,11 @@ angular.module('managementController', [])
                     $timeout(function () {
                         app.successMsg = false;
                         $scope.newPermission = newPermission;
-                        if(newPermission === 'user'){
+                        if (newPermission === 'user') {
                             app.disableUser = true;
                             app.disableAdmin = false;
                         }
-                        if(newPermission === 'admin'){
+                        if (newPermission === 'admin') {
                             app.disableUser = false;
                             app.disableAdmin = true;
                         }

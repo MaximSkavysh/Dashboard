@@ -33,8 +33,12 @@
 
     <div ng-show="edit.phase3">
         <label>Current permission {{newPermission}}</label>
-        <button ng-disabled="edit.disableUser" ng-click="edit.updatePermission('user');" type="button" class="btn btn-default">User</button>
-        <button ng-disabled="edit.disableAdmin" ng-click="edit.updatePermission('admin');" type="button" class="btn btn-default">Admin</button>
+        <button ng-disabled="edit.disableUser" ng-click="edit.updatePermission('user');" type="button"
+                class="btn btn-default">User
+        </button>
+        <button ng-disabled="edit.disableAdmin" ng-click="edit.updatePermission('admin');" type="button"
+                class="btn btn-default">Admin
+        </button>
     </div>
 
 </div>
