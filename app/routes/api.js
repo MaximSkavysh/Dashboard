@@ -371,6 +371,8 @@ module.exports = function (router) {
         });
     });
     router.post('/notes', function (req, res) {
+        var newEmail = false;
+        if (req.body.sendEmail)  newEmail = true;
         var note = req.body.name;
         var description = req.body.description;
         var linkToNote = req.body.link;
@@ -383,25 +385,29 @@ module.exports = function (router) {
             if (err)
                 res.send(err);
             res.json(notes);
-            var email = {
-                to: ['Maksim.Skavysh@ibm.com', 'Ikram Khan/Dallas/IBM@IBMUS', 'Rob Morgan/Endicott/IBM@IBMUS', 'Erica Wilson/Dallas/IBM@IBMUS', 'Ed Cordell/Fishkill/IBM@IBMUS', 'Satyendra Kumar/Austin/IBM@IBMUS', 'Doug C Ewing/Austin/IBM@IBMUS', 'Egor Titovich/Rochester/Contr/IBM@IBMUS', 'jorge.hernandez.rojas@ibm.com', 'natalia@mx1.ibm.com', 'zcarlos@mx1.ibm.com', 'lmrodrig@mx1.ibm.com', 'Ritu Machavarapu/Austin/IBM@IBMUS', 'mcasarez@mx1.ibm.com'],
-                from: 'Maksim.Skavysh@ibm.com',
-                cc: ['Alexander Pokataev/Austin/Contr/IBM@IBMUS', 'Uladimir Zmachynski/Poughkeepsie/Contr/IBM@IBMUS'],
-                subject: 'New build: ' + model,
-                text: 'Hello new build ',
-                html: 'Hello new build:<strong> ' + model + '</strong> is avaliable in box: <a href="' + linkModel + '"> ' + linkModel + '</a>' +
-                '<br>Release notes:<strong> ' + note + '</strong> <a href="' + linkToNote + '"> ' + linkToNote + '</a>' +
-                '<br>SBE Version:<strong> ' + sbe + '</strong> <a href="' + sbeLink + '"> ' + sbeLink + '</a>' +
-                '<br><strong>Also this has been uploaded to GSA</strong><ul><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-power</li><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-storage</li><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-z</li></ul>' +
-                '<br>For more details visit demo "Dashboard for release notes"<a href="http://9.53.68.17:8080/">http://9.53.68.17:8080/</a>.'
-            };
+            if (newEmail == true) {
+                var email = {
+                    to: ['Maksim.Skavysh@ibm.com', 'Ikram Khan/Dallas/IBM@IBMUS', 'Rob Morgan/Endicott/IBM@IBMUS', 'Erica Wilson/Dallas/IBM@IBMUS', 'Ed Cordell/Fishkill/IBM@IBMUS', 'Satyendra Kumar/Austin/IBM@IBMUS', 'Doug C Ewing/Austin/IBM@IBMUS', 'Egor Titovich/Rochester/Contr/IBM@IBMUS', 'jorge.hernandez.rojas@ibm.com', 'natalia@mx1.ibm.com', 'zcarlos@mx1.ibm.com', 'lmrodrig@mx1.ibm.com', 'Ritu Machavarapu/Austin/IBM@IBMUS', 'mcasarez@mx1.ibm.com'],
+                    from: 'Maksim.Skavysh@ibm.com',
+                    cc: ['Alexander Pokataev/Austin/Contr/IBM@IBMUS', 'Uladimir Zmachynski/Poughkeepsie/Contr/IBM@IBMUS'],
+                    subject: 'New build: ' + model,
+                    text: 'Hello new build ',
+                    html: 'Hello new build:<strong> ' + model + '</strong> is avaliable in box: <a href="' + linkModel + '"> ' + linkModel + '</a>' +
+                    '<br>Release notes:<strong> ' + note + '</strong> <a href="' + linkToNote + '"> ' + linkToNote + '</a>' +
+                    '<br>SBE Version:<strong> ' + sbe + '</strong> <a href="' + sbeLink + '"> ' + sbeLink + '</a>' +
+                    '<br><strong>Also this has been uploaded to GSA</strong><ul><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-power</li><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-storage</li><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-z</li></ul>' +
+                    '<br>For more details visit demo "Dashboard for release notes: "<a href="http://9.53.68.17:8080/">http://9.53.68.17:8080/</a>.'
+                };
 
-            mailer.sendMail(email, function (err, res) {
-                if (err) {
-                    console.log(err)
-                }
-                console.log(res);
-            });
+                mailer.sendMail(email, function (err, res) {
+                    if (err) {
+                        console.log(err)
+                    }
+                    console.log(res);
+                });
+                newEmail = false;
+            }
+
         });
     });
 
