@@ -3,6 +3,8 @@ var Board = require('../models/board')
 var jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer'); // Import Nodemailer Package
 var sgTransport = require('nodemailer-sendgrid-transport'); // Import Nodemailer Sengrid Transport Package
+var dateFormat = require('dateformat');
+var mongoose = require('mongoose');
 var secretPhrase = 'lobster';
 // Export routes to the main server.js file
 module.exports = function (router) {
@@ -370,17 +372,36 @@ module.exports = function (router) {
             res.json(note);
         });
     });
+    Board.aggregate([
+        {$match: {created_at: "Wednesday, January 31st, 2018, 9:10:00 PM"}},
+        {$group: {_id: '$created_at', total_builds: {$sum: 1}}}
+    ], function (err, res) {
+        if (err) return handleError(err);
+        console.log(res);
+    });
+
+    Board.aggregate(
+        {
+            $group:
+                {_id: '$created_at', total_builds: {$sum: 1}}
+        },
+        function (err, res) {
+            if (err) return handleError(err);
+            console.log(res);
+        }
+    );
+
+
     router.post('/notes', function (req, res) {
         var newEmail = false;
-        if (req.body.sendEmail)  newEmail = true;
         var note = req.body.name;
         var description = req.body.description;
         var linkToNote = req.body.link;
-        var version = req.body.version;
         var model = req.body.model;
         var linkModel = req.body.linkModel;
         var sbe = req.body.sbe;
         var sbeLink = req.body.sbeLink;
+        if (req.body.sendEmail) newEmail = true;
         Board.create(req.body, function (err, notes) {
             if (err)
                 res.send(err);
@@ -396,7 +417,7 @@ module.exports = function (router) {
                     '<br>Release notes:<strong> ' + note + '</strong> <a href="' + linkToNote + '"> ' + linkToNote + '</a>' +
                     '<br>SBE Version:<strong> ' + sbe + '</strong> <a href="' + sbeLink + '"> ' + sbeLink + '</a>' +
                     '<br><strong>Also this has been uploaded to GSA</strong><ul><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-power</li><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-storage</li><li>/gsa/ausgsa/projects/e/ecfgcloud/prod-z</li></ul>' +
-                    '<br>For more details visit demo "Dashboard for release notes: "<a href="http://9.53.68.17:8080/">http://9.53.68.17:8080/</a>.'
+                    '<br>For more details visit demo "Dashboard for release notes": <a href="http://9.53.68.17:8080/">http://9.53.68.17:8080/</a>.<strong> after registration.</strong>'
                 };
 
                 mailer.sendMail(email, function (err, res) {
@@ -423,7 +444,6 @@ module.exports = function (router) {
             name: req.body.name,
             description: req.body.description,
             link: req.body.link,
-            version: req.body.version,
             model: req.body.model,
             linkModel: req.body.linkModel,
             sbe: req.body.sbe,
