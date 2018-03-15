@@ -408,9 +408,9 @@ module.exports = function (router) {
             res.json(notes);
             if (newEmail == true) {
                 var email = {
-                    to: ['Maksim.Skavysh@ibm.com', 'Ikram Khan/Dallas/IBM@IBMUS', 'Rob Morgan/Endicott/IBM@IBMUS', 'Erica Wilson/Dallas/IBM@IBMUS', 'Ed Cordell/Fishkill/IBM@IBMUS', 'Satyendra Kumar/Austin/IBM@IBMUS', 'Doug C Ewing/Austin/IBM@IBMUS', 'Egor Titovich/Rochester/Contr/IBM@IBMUS', 'jorge.hernandez.rojas@ibm.com', 'natalia@mx1.ibm.com', 'zcarlos@mx1.ibm.com', 'lmrodrig@mx1.ibm.com', 'Ritu Machavarapu/Austin/IBM@IBMUS', 'mcasarez@mx1.ibm.com'],
+                    to: ['Maksim.Skavysh@ibm.com', 'iakhan@us.ibm.com', 'morganro@us.ibm.com', 'edwilson@us.ibm.com', 'ecordell@us.ibm.com', 'satyen@us.ibm.com', 'dcewing@us.ibm.com', 'titovich@us.ibm.com', 'jorge.hernandez.rojas@ibm.com', 'natalia@mx1.ibm.com', 'zcarlos@mx1.ibm.com', 'lmrodrig@mx1.ibm.com', 'ritu@us.ibm.com', 'mcasarez@mx1.ibm.com'],
                     from: 'Maksim.Skavysh@ibm.com',
-                    cc: ['Alexander Pokataev/Austin/Contr/IBM@IBMUS', 'Uladimir Zmachynski/Poughkeepsie/Contr/IBM@IBMUS'],
+                    cc: ['pokataev@us.ibm.com', 'uladimir@us.ibm.com'],
                     subject: 'New build: ' + model,
                     text: 'Hello new build ',
                     html: 'Hello new build:<strong> ' + model + '</strong> is avaliable in box: <a href="' + linkModel + '"> ' + linkModel + '</a>' +
