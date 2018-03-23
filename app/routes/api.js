@@ -382,8 +382,7 @@ module.exports = function (router) {
 
     Board.aggregate(
         {
-            $group:
-                {_id: '$created_at', total_builds: {$sum: 1}}
+            $group: {_id: '$created_at', total_builds: {$sum: 1}}
         },
         function (err, res) {
             if (err) return handleError(err);
