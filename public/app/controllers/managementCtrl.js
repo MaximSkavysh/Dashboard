@@ -95,8 +95,6 @@ angular.module('managementController', [])
             app.phase2 = false;
             app.phase3 = true;
             app.errorMsg = false;
-            ;
-
         };
 
         app.updateUsername = function (newUsername) {
