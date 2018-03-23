@@ -18,7 +18,6 @@ angular.module('boardController', [])
         $scope.addNote = function () {
             //var id = $routeParams.id;
             $http.post('/api/notes/', $scope.note).then(function (response) {
-                //$scope.employee = response.data;
                 window.location.href = '/notes';
             });
         };
@@ -36,8 +35,8 @@ angular.module('boardController', [])
             });
         };
 
-        $scope.sendMail = function(){
-
-        }
+        //$scope.sendMail = function(){
+        //
+        //}
 
     });

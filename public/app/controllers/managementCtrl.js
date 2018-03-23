@@ -21,7 +21,6 @@ angular.module('managementController', [])
                     else {
                         app.errorMsg = 'No permission';
                     }
-
                 }
                 else {
                     app.errorMsg = data.data.message;
@@ -95,8 +94,6 @@ angular.module('managementController', [])
             app.phase2 = false;
             app.phase3 = true;
             app.errorMsg = false;
-            ;
-
         };
 
         app.updateUsername = function (newUsername) {
