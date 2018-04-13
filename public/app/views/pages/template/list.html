@@ -16,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="note in notes">
+            <tr ng-repeat="note in notes| orderBy : '-version'">
                 <td>
                     {{ note.name }}
                     <a href="{{ note.link }}"><span class="glyphicon glyphicon-link"></span>  </a>
