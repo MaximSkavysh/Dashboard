@@ -7,18 +7,18 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release Note and Link:</th>
-                <th><span class="glyphicon glyphicon-file"></span>Build and Link to Build:</th>
-                <th>SBE and Link to SBE:</th>
+                <th><span class="glyphicon glyphicon-file" aria-hidden="true"></span>Release Note:</th>
+                <th><span class="glyphicon glyphicon-file"></span>Build:</th>
+                <th>SBE:</th>
                 <th><span class="glyphicon glyphicon-flag"></span>Version</th>
                 <th><span class="glyphicon glyphicon-calendar"></span> Date</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="note in notes">
+            <tr ng-repeat="note in notes | orderBy : '-version'">
                 <td>
-                    {{ note.name }}
+                    <a href="/notes/{{note._id}}/show" class="btn btn-link"> Show </a>
                     <a href="{{ note.link }}"><span class="glyphicon glyphicon-link"></span>  </a>
                 </td>
                 <td>
