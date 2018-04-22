@@ -8,11 +8,11 @@
                 <label class="form-control">Note: {{ note.name }}</label>
                 <label for="description">Description:</label>
                 <textarea rows="10" cols="30" type="text" class="form-control" id="description" readonly="true"> {{note.description}}</textarea>
-                <label class="form-control">Link to Note: <a href="{{ note.link }}">{{ note.link }} </a></label>
+                <label class="form-control">Link to Note: <a href="{{ note.link }}" target="_blank">{{ note.link }} </a></label>
                 <label class="form-control">Build: {{ note.model }}</label>
-                <label class="form-control">Link to Build: <a href="{{note.linkModel}}"> {{note.linkModel}}</a></label>
+                <label class="form-control">Link to Build: <a href="{{note.linkModel}}" target="_blank"> {{note.linkModel}}</a></label>
                 <label class="form-control">SBE: {{note.sbe}}</label>
-                <label class="form-control">Link to SBE: <a href="{{note.sbeLink}}"> {{note.sbeLink}}</a></label>
+                <label class="form-control">Link to SBE: <a href="{{note.sbeLink}}" target="_blank"> {{note.sbeLink}}</a></label>
                 <label class="form-control">Version: {{ note.version }}</label>
                 <label class="form-control">Date uploaded: {{ note.created_at }}</label>
                 <a href="/notes" class="btn btn-default"> Cancel</a>

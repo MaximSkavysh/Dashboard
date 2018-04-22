@@ -59,7 +59,7 @@ angular.module('mainController', ['authServices', 'userServices'])
                     $location.path('/logout'); // Change route to clear user object
                     hideModal(); // Close modal
                     window.location.reload();
-                }, 2000);
+                }, 1000);
             }
         };
 
